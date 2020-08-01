@@ -1,16 +1,13 @@
 const TokenHelper = require('../../helpers/token.helper');
-const BaseController = require('../base.controller');
 const HttpStatus = require('http-status-codes');
+const BaseController = require('../base.controller');
 
 class AuthorizationController extends BaseController {
     constructor() {
         super();
-        this.login = this.login.bind(this);
-        this.registry = this.registry.bind(this);
-        this.logout = this.logout.bind(this);
     }
 
-    login(req, res, next) {
+    signIn = (req, res, next) => {
         const token = TokenHelper.getToken(req);
         const refreshToken = TokenHelper.getRefreshToken(req);
 
@@ -19,10 +16,10 @@ class AuthorizationController extends BaseController {
             refreshToken: refreshToken,
         };
 
-        this.sendResponse(authData, AuthorizationController, HttpStatus.OK, req, res, next);
+        this.sendResponse(authData, this, HttpStatus.OK, req, res, next);
     }
 
-    registry(req, res, next) {
+    signUp = (req, res, next) => {
         const token = TokenHelper.getToken(req);
         const refreshToken = TokenHelper.getRefreshToken(req);
 
@@ -30,12 +27,12 @@ class AuthorizationController extends BaseController {
             accessToken: token,
             refreshToken: refreshToken,
         };
-        
-        this.sendResponse(authData, null, HttpStatus.CREATED, req, res, next);
+
+        this.sendResponse(authData, this, HttpStatus.CREATED, req, res, next);
     };
 
-    logout(req, res, next) {
-        this.sendResponse(null, null, HttpStatus.NO_CONTENT, req, res, next);
+    signOut = (req, res, next) => {
+        this.sendResponse(null, this, HttpStatus.NO_CONTENT, req, res, next);
     };
 }
 

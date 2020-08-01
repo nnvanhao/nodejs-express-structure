@@ -36,10 +36,19 @@
     "rmdir": "^1.2.0",
     "sequelize": "^5.21.13",
     "swagger-jsdoc": "^4.0.0",
+    "swagger-model-validator": "^3.0.19",
     "swagger-ui-express": "^4.1.4",
     "sync-request": "^6.1.0",
     "uuid": "^3.3.3",
     "winston": "^3.3.3",
     "winston-daily-rotate-file": "^4.5.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.6.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^4.0.1"
   }
 }
