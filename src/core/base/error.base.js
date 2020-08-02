@@ -1,7 +1,10 @@
 const ResponseSerializer = require('../utils/responseSerializer.util');
 const ErrorCode = require('../../common/constants/errorCode.constant');
+const Logger = require('../../helpers/logger.helper');
+const logger = new Logger();
 
-function sendErrorResponse(errorItem, req, res, next) {
+const sendErrorResponse = (errorItem, req, res, next, err = null) => {
+    logger.log(`Error during processing request: ${`${req.protocol}://${req.get('host')}${req.originalUrl}`} details message: ${err}`, 'error');
     try {
         const response = ResponseSerializer.errorResponse(errorItem);
         res.status(errorItem.code).send(response);

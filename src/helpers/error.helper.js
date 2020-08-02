@@ -1,10 +1,10 @@
-function buildErrorItem(resource, field, code, message, details) {
+const buildErrorItem = (resource, field, code, message, details) => {
     const errorItem = {
-        resource: resource,
-        field: field,
-        code: code,
-        message: message,
-        details: details,
+        resource,
+        field,
+        code,
+        message,
+        details,
         date: new Date(),
     };
     return errorItem;

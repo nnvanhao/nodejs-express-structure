@@ -1,6 +1,7 @@
 const VerifyUserMiddleware = require('../../middlewares/authorization/verify.user.middleware');
 const AuthorizationController = require('../../controllers/authorization/authorization.controller');
 const ApiUtils = require('../../common/api/api.router');
+const Validator = require('../../helpers/validator');
 
 exports.routesConfig = function (app) {
     /**
@@ -31,7 +32,8 @@ exports.routesConfig = function (app) {
       *         description: Sign in successful
       */
     app.post(ApiUtils.AUTH, [
-        VerifyUserMiddleware.hasAuthValidFields,
+        Validator.validateAuthRules(),
+        Validator.validateResult,
         AuthorizationController.signIn,
     ]);
 
@@ -69,14 +71,40 @@ exports.routesConfig = function (app) {
       *         description: Sign up successful
       */
     app.post(ApiUtils.SIGN_UP, [
-        VerifyUserMiddleware.hasRegistryUserValidFields,
+        Validator.validateAuthRules(),
+        Validator.validateResult,
         AuthorizationController.signUp,
     ]);
 
+    /**
+     * @swagger
+     * /auth/refresh:
+     *   post:
+     *     tags:
+     *       - Auth
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *     - name: body
+     *       in: body
+     *       description: Get new token using refresh token
+     *       required: true
+     *       schema:
+     *         type: object
+     *         required:
+     *           - refreshToken
+     *         properties:
+     *           refreshToken:
+     *             type: string
+     *     responses:
+     *       200:
+     *         description: Refresh token successful
+     */
     app.post(ApiUtils.AUTH_REFRESH, [
+        Validator.validateRefreshAuthRules(),
+        Validator.validateResult,
         VerifyUserMiddleware.validJWTNeeded,
-        VerifyUserMiddleware.verifyRefreshBodyField,
-        VerifyUserMiddleware.validRefreshNeeded,
+        // VerifyUserMiddleware.validRefreshNeeded,
         AuthorizationController.signIn,
     ]);
 
@@ -95,8 +123,8 @@ exports.routesConfig = function (app) {
       *       required: true
       *       type: string
       *     responses:
-      *       201:
-      *         description: Sign in successful
+      *       200:
+      *         description: Sign out successful
       */
     app.post(ApiUtils.SIGN_OUT, [
         AuthorizationController.signOut,

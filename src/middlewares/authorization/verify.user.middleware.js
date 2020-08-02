@@ -44,7 +44,7 @@ exports.hasRegistryUserValidFields = async (req, res, next) => {
 };
 
 exports.verifyRefreshBodyField = (req, res, next) => {
-    if (!req.body || !req.body.refresh_token) {
+    if (!req.body || !req.body.refreshToken) {
         const errorItem = buildErrorItem('verifyRefreshBodyField', null, HttpStatus.BAD_REQUEST, Message.REFRESH_TOKEN_FIELD, null);
         sendErrorResponse(errorItem, req, res, next);
     } else {
@@ -75,10 +75,10 @@ exports.validJWTNeeded = (req, res, next) => {
 };
 
 exports.validRefreshNeeded = (req, res, next) => {
-    let b = new Buffer(req.body.refresh_token, 'base64');
-    let refresh_token = b.toString();
+    let b = new Buffer(req.body.refreshToken, 'base64');
+    let refreshToken = b.toString();
     let hash = crypto.createHmac('sha512', req.jwt.refreshKey).update(req.jwt.userId + config.jwt_secret).digest("base64");
-    if (hash === refresh_token) {
+    if (hash === refreshToken) {
         req.body = req.jwt;
         return next();
     } else {

@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const ErrorCode = require('../common/constants/errorCode.constant');
 const ResponseSerializer = require('../core/utils/responseSerializer.util');
 
@@ -17,7 +16,7 @@ class BaseController {
     }
 
     formatResponse(results, resource) {
-        const formattedResponse = _.isArray(results)
+        const formattedResponse = Array.isArray(results)
             ? ResponseSerializer.collectionResourceResponse(results, resource)
             : ResponseSerializer.singleResourceResponse(results, resource);
         return formattedResponse;

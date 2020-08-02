@@ -1,6 +1,6 @@
 const Message = require('../../common/constants/message');
-const {buildErrorItem} = require('../../helpers/error.helper');
-const {sendErrorResponse} = require('../../core/base/error.base');
+const { buildErrorItem } = require('../../helpers/error.helper');
+const { sendErrorResponse } = require('../../core/base/error.base');
 const HttpStatus = require('http-status-codes');
 
 exports.permissionRequired = (accessRight) => {

@@ -10,7 +10,7 @@ class AuthorizationController extends BaseController {
         const data = {
             mess: "Welcome NodeJS Express Structure",
         }
-        this.sendResponse(data, this, HttpStatus.OK, req, res, next);
+        this.sendResponse(data, this, HttpStatus.OK, req, res);
     }
 }
 
