@@ -1,4 +1,4 @@
-const RESOURCES = require('../../common/constants/baseApiResource.constant');
+const RESOURCES = require('../common/constants/baseApiResource.constant');
 
 class ResponseSerializerUtil {
     singleResourceResponse(data, resource) {

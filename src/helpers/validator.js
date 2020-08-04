@@ -1,7 +1,6 @@
 const HttpStatus = require('http-status-codes');
 const { body, matchedData, validationResult } = require('express-validator');
-const { buildErrorItem } = require('../helpers/error.helper');
-const { sendErrorResponse } = require('../core/base/error.base');
+const { buildErrorItem, sendErrorResponse } = require('../helpers/error.helper');
 const Message = require('../common/constants/message.constant');
 
 const validateAuthRules = () => {

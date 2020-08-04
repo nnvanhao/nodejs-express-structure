@@ -1,5 +1,5 @@
 const ErrorCode = require('../common/constants/errorCode.constant');
-const ResponseSerializer = require('../core/utils/responseSerializer.util');
+const ResponseSerializer = require('../core/responseSerializer.util');
 
 class BaseController {
     sendResponse(results, resource, httpStatusCode, req, res, next) {

@@ -7,6 +7,11 @@ const HttpStatus = require('http-status-codes');
 const Swagger = require('./configuration/initSwagger');
 const Routes = require('./configuration/initRoutes');
 const Server = require('./configuration/initServer');
+const xssFilter = require('x-xss-protection');
+const rateLimit = require("express-rate-limit");
+const helmet = require("helmet");
+const hpp = require('hpp');
+const cookieParser = require('cookie-parser');
 const MySQLConnection = require('./src/config/connection/mysql.connection');
 
 const app = express();
@@ -16,6 +21,20 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(xssFilter());
+app.use(helmet());
+app.use(hpp());
+app.use(cookieParser());
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100 // limit each IP to 100 requests per windowMs
+});
+
+//  apply to all requests
+app.use(limiter);
+app.set('db', require('./src/models'));
+
 
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
