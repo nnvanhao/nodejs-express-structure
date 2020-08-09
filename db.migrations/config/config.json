@@ -1,5 +1,5 @@
 {
-  "dev": {
+  "development": {
     "username": "root",
     "password": "123456",
     "database": "db",
@@ -8,22 +8,15 @@
   },
   "test": {
     "username": "root",
-    "password": "123456",
-    "database": "db",
+    "password": null,
+    "database": "database_test",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
-  "staging": {
+  "production": {
     "username": "root",
-    "password": "123456",
-    "database": "db",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
-  "prod": {
-    "username": "root",
-    "password": "123456",
-    "database": "db",
+    "password": null,
+    "database": "database_production",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }

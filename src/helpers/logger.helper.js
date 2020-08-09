@@ -4,7 +4,7 @@ const { createLogger, format, transports } = require('winston');
 const DailyRotate = require('winston-daily-rotate-file');
 const config = require('../config');
 
-const { env } = config.ENV;
+const { env } = config.ENVIRONMENT;
 const logDir = 'log';
 
 let infoLogger;

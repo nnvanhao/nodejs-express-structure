@@ -1,4 +1,4 @@
-const ResponseSerializer = require('../core/responseSerializer.util');
+const ResponseSerializer = require('../core/responseSerializer');
 const ErrorCode = require('../common/constants/errorCode.constant');
 const Logger = require('../helpers/logger.helper');
 const logger = new Logger();

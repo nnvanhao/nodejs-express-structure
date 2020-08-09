@@ -1,7 +1,7 @@
 version: '3'
 services:
   api:
-    image: makinhs/nodejs-smart-build
+    image: nnvanhao/nodejs-smart-build
     build: .
     networks:
       - backend
@@ -20,7 +20,7 @@ services:
       - "27017:27017"
 
   web-cli:
-    image: makinhs/nodejs-smart-build
+    image: nnvanhao/nodejs-smart-build
     links:
       - mongo
     networks:

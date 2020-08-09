@@ -59,7 +59,7 @@ exports.validJWTNeeded = (req, res, next) => {
                 const errorItem = buildErrorItem('validJWTNeeded', null, HttpStatus.UNAUTHORIZED, Message.UNAUTHORIZED, null);
                 sendErrorResponse(errorItem, req, res, next);
             } else {
-                req.jwt = jwt.verify(authorization[1], config.jwt_secret);
+                req.jwt = jwt.verify(authorization[1], config.JWT_SECRET);
                 return next();
             }
 
@@ -76,7 +76,7 @@ exports.validJWTNeeded = (req, res, next) => {
 exports.validRefreshNeeded = (req, res, next) => {
     let b = new Buffer(req.body.refreshToken, 'base64');
     let refreshToken = b.toString();
-    let hash = crypto.createHmac('sha512', req.jwt.refreshKey).update(req.jwt.userId + config.jwt_secret).digest("base64");
+    let hash = crypto.createHmac('sha512', req.jwt.refreshKey).update(req.jwt.userId + config.JWT_SECRET).digest("base64");
     if (hash === refreshToken) {
         req.body = req.jwt;
         return next();

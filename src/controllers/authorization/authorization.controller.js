@@ -1,11 +1,11 @@
-const TokenHelper = require('../../helpers/token.helper');
-const HttpStatus = require('http-status-codes');
-const BaseController = require('../base.controller');
+const TokenHelper = require("../../helpers/token.helper");
+const HttpStatus = require("http-status-codes");
+const BaseController = require("../base.controller");
 
 class AuthorizationController extends BaseController {
     constructor() {
         super();
-    }
+    };
 
     signIn = (req, res, next) => {
         const token = TokenHelper.getToken(req);
@@ -17,7 +17,7 @@ class AuthorizationController extends BaseController {
         };
 
         this.sendResponse(authData, this, HttpStatus.OK, req, res, next);
-    }
+    };
 
     signUp = (req, res, next) => {
         const token = TokenHelper.getToken(req);
