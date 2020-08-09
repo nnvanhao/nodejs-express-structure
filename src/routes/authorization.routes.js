@@ -1,7 +1,7 @@
-const VerifyUserMiddleware = require('../../middlewares/authorization/verify.user.middleware');
-const AuthorizationController = require('../../controllers/authorization/authorization.controller');
-const ApiUtils = require('../../common/api/api.router');
-const Validator = require('../../helpers/validator');
+const VerifyUserMiddleware = require('../middlewares/authorization/verify.user.middleware');
+const { AuthorizationController } = require('../controllers');
+const ApiUtils = require('../common/api/api.router');
+const Validator = require('../helpers/validator');
 
 exports.routesConfig = function (app) {
     /**

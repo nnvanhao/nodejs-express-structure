@@ -1,6 +1,6 @@
-const TokenHelper = require("../../helpers/token.helper");
+const TokenHelper = require("../helpers/token.helper");
 const HttpStatus = require("http-status-codes");
-const BaseController = require("../base.controller");
+const BaseController = require("./base.controller");
 
 class AuthorizationController extends BaseController {
     constructor() {
