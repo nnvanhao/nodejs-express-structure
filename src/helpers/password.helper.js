@@ -7,4 +7,4 @@ function hashPassword(password) {
     return hashPassword;
 }
 
-module.exports = {hashPassword};
+module.exports = { hashPassword };

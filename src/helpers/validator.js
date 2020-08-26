@@ -48,7 +48,7 @@ const validateResult = (req, res, next) => {
 
     const errorJsonString = JSON.stringify(extractedErrors);
 
-    const errorItem = buildErrorItem('validate', null, HttpStatus.UNPROCESSABLE_ENTITY, extractedErrors, null);
+    const errorItem = buildErrorItem(validateResult.name, null, HttpStatus.UNPROCESSABLE_ENTITY, Message.INVALID_VALIDATE_FIELD, extractedErrors);
     sendErrorResponse(errorItem, req, res, next, errorJsonString);
 }
 

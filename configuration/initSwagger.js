@@ -13,10 +13,10 @@ exports.initSwagger = function (app) {
                     email: 'nnvanhao.dev@gmail.com',
                     url: 'https://nnvanhao.com',
                 },
-                // license: {
-                //     name: 'Apache 2.0',
-                //     url: 'https://www.apache.org/licenses/LICENSE-2.0.html',
-                // },
+                license: {
+                    name: 'Apache 2.0',
+                    url: 'https://www.apache.org/licenses/LICENSE-2.0.html',
+                },
                 servers: ['http://localhost:3600'],
             },
             tags: [

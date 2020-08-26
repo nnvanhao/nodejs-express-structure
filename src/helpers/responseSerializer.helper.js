@@ -25,38 +25,17 @@ class ResponseSerializerUtil {
     createListItems(data, resource) {
         const items = [];
         data.forEach(function (item) {
-            items.push({
-                data: item,
-                meta: {
-                    type: resource,
-                }
-            });
+            items.push(item);
         });
         return items;
     }
 
-    errorResponse(err) {
-        return {
-            error: this.getErrorItem(err.resource, err.field, err.code, err.message, err.details),
-            meta: this.getErrorItemMeta()
-        };
-    }
 
-    getErrorItem(resource, field, code, message, details) {
-        return {
-            resource: resource,
-            field: field,
-            code: code,
-            message: message,
-            details: details,
-            date: new Date()
-        };
-    }
-
-    getErrorItemMeta() {
-        return {
-            type: RESOURCES.ERROR
-        };
+    formatResponse(results, resource) {
+        const formattedResponse = Array.isArray(results)
+            ? this.collectionResourceResponse(results, resource)
+            : this.singleResourceResponse(results, resource);
+        return formattedResponse;
     }
 }
 
