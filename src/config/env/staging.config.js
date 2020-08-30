@@ -9,4 +9,5 @@ module.exports = {
     JWT_SECRET: 'myS33!!creeeT',
     JWT_EXPIRATION_IN_SECONDS: 3600,
     ENVIRONMENT: 'staging',
+    CLUSTER: false,
 };

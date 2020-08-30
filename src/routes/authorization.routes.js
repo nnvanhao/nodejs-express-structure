@@ -1,4 +1,4 @@
-const VerifyUserMiddleware = require('../middlewares/authorization/verify.user.middleware');
+const VerifyUserMiddleware = require('../middlewares/verify.authenticate.middleware');
 const { AuthorizationController } = require('../controllers');
 const ApiUtils = require('../common/api/api.router');
 const Validator = require('../helpers/validator');

@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-const config = require('../../config');
+const config = require('../../config/env');
 const { LOGGER_TYPE } = require('../../common/constants/common.constant');
 const Logger = require('../../../src/helpers/logger.helper');
 const logger = new Logger();

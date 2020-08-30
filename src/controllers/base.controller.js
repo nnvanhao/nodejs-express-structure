@@ -4,7 +4,7 @@ const HttpStatus = require('http-status-codes');
 const Message = require('../common/constants/message.constant');
 
 class BaseController {
-    sendResponse(results, resources, httpStatusCode, req, res, next) {
+    sendResponse = (results, resources, httpStatusCode, req, res, next) => {
         try {
             if (!results['resource']) {
                 const response = responseSerializer.formatResponse(results, resources);

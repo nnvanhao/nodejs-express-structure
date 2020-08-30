@@ -1,8 +1,8 @@
 const crypto = require('crypto');
-const config = require('../../config');
+const config = require('../config/env');
 const jwt = require('jsonwebtoken');
-const Message = require('../../common/constants/message.constant');
-const { buildErrorItem, sendErrorResponse } = require('../../helpers/error.helper');
+const Message = require('../common/constants/message.constant');
+const { buildErrorItem, sendErrorResponse } = require('../helpers/error.helper');
 const HttpStatus = require('http-status-codes');
 
 exports.hasAuthValidFields = (req, res, next) => {

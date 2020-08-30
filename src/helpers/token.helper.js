@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
-const config = require('../config');
+const config = require('../config/env');
 
 const getToken = (email, password) => {
     let salt = crypto.randomBytes(16).toString('base64');
