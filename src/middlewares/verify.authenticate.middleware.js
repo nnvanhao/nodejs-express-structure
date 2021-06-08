@@ -1,9 +1,8 @@
 const crypto = require('crypto');
-const config = require('../../config');
+const config = require('../config/env');
 const jwt = require('jsonwebtoken');
-const Message = require('../../common/constants/message.constant');
-const {buildErrorItem} = require('../../helpers/error.helper');
-const {sendErrorResponse} = require('../../core/base/error.base');
+const Message = require('../common/constants/message.constant');
+const { buildErrorItem, sendErrorResponse } = require('../helpers/error.helper');
 const HttpStatus = require('http-status-codes');
 
 exports.hasAuthValidFields = (req, res, next) => {
@@ -44,7 +43,7 @@ exports.hasRegistryUserValidFields = async (req, res, next) => {
 };
 
 exports.verifyRefreshBodyField = (req, res, next) => {
-    if (!req.body || !req.body.refresh_token) {
+    if (!req.body || !req.body.refreshToken) {
         const errorItem = buildErrorItem('verifyRefreshBodyField', null, HttpStatus.BAD_REQUEST, Message.REFRESH_TOKEN_FIELD, null);
         sendErrorResponse(errorItem, req, res, next);
     } else {
@@ -60,7 +59,7 @@ exports.validJWTNeeded = (req, res, next) => {
                 const errorItem = buildErrorItem('validJWTNeeded', null, HttpStatus.UNAUTHORIZED, Message.UNAUTHORIZED, null);
                 sendErrorResponse(errorItem, req, res, next);
             } else {
-                req.jwt = jwt.verify(authorization[1], config.jwt_secret);
+                req.jwt = jwt.verify(authorization[1], config.JWT_SECRET);
                 return next();
             }
 
@@ -75,10 +74,10 @@ exports.validJWTNeeded = (req, res, next) => {
 };
 
 exports.validRefreshNeeded = (req, res, next) => {
-    let b = new Buffer(req.body.refresh_token, 'base64');
-    let refresh_token = b.toString();
-    let hash = crypto.createHmac('sha512', req.jwt.refreshKey).update(req.jwt.userId + config.jwt_secret).digest("base64");
-    if (hash === refresh_token) {
+    let b = new Buffer(req.body.refreshToken, 'base64');
+    let refreshToken = b.toString();
+    let hash = crypto.createHmac('sha512', req.jwt.refreshKey).update(req.jwt.userId + config.JWT_SECRET).digest("base64");
+    if (hash === refreshToken) {
         req.body = req.jwt;
         return next();
     } else {

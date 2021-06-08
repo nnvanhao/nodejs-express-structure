@@ -2,9 +2,9 @@
 const fs = require('fs');
 const { createLogger, format, transports } = require('winston');
 const DailyRotate = require('winston-daily-rotate-file');
-const config = require('../config');
+const config = require('../config/env');
 
-const { env } = config.ENV;
+const { env } = config.ENVIRONMENT;
 const logDir = 'log';
 
 let infoLogger;

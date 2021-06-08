@@ -1,5 +1,5 @@
 class BaseService {
-
+    
 }
 
-module.exports = new BaseService();
+module.exports = BaseService;

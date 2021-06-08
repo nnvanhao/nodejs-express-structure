@@ -1,7 +1,11 @@
 {
     "cSpell.words": [
         "DEACTIVE",
+        "FIRSTNAME",
+        "LASTNAME",
         "Sequalize",
+        "UNPROCESSABLE",
+        "dockerode",
         "middlewares",
         "nnvanhao"
     ]

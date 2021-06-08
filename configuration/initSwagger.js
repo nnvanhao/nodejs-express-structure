@@ -5,7 +5,7 @@ exports.initSwagger = function (app) {
     const swaggerOptions = {
         swaggerDefinition: {
             info: {
-                title: 'Customer API',
+                title: 'NodeJS Express Structure Swagger API',
                 version: '1.0.0',
                 description: 'API Information',
                 contact: {
@@ -20,31 +20,13 @@ exports.initSwagger = function (app) {
                 servers: ['http://localhost:3600'],
             },
             tags: [
-                {
-                    name: 'users',
-                    description: 'Users API',
-                },
-                {
-                    name: 'Auth',
-                    description: 'Authentication apis',
-                },
-                {
-                    name: 'Email',
-                    description: 'for testing and sending emails ',
-                },
-                {
-                    name: 'termsAndCondition',
-                    description: ' the terms and condition for the application',
-    
-                },
-                {
-                    name: 'Versioning',
-                    description: ' operation related to check the version of the apis or the mobile .. etc ',
-    
-                },
-            ],
+			{
+				name: 'Auth',
+				description: 'Authentication apis',
+			},
+		],
             schemes: ['http'],
-            basePath: '/api/v1',
+            // basePath: '/api/v1',
             securityDefinitions: {
                 Bearer: {
                     type: 'apiKey',
@@ -60,5 +42,8 @@ exports.initSwagger = function (app) {
         ],
     };
     const swaggerDocs = swaggerJSDoc(swaggerOptions);
+    const Validator = require('swagger-model-validator');
+    const validator = new Validator(swaggerDocs);
+
     app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 };

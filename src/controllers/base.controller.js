@@ -1,26 +1,21 @@
-const _ = require('lodash');
-const ErrorCode = require('../common/constants/errorCode.constant');
-const ResponseSerializer = require('../core/utils/responseSerializer.util');
+const responseSerializer = require('../helpers/responseSerializer.helper');
+const { buildErrorItem, sendErrorResponse } = require('../helpers/error.helper');
+const HttpStatus = require('http-status-codes');
+const Message = require('../common/constants/message.constant');
 
 class BaseController {
-    sendResponse(results, resource, httpStatusCode, req, res, next) {
+    sendResponse = (results, resources, httpStatusCode, req, res, next) => {
         try {
-            const response = this.formatResponse(results, resource);
-            res.status(httpStatusCode).send(response);
-        } catch (err) {
-            if (err.code === 'ER_ROW_IS_REFERENCED_2') {
-                next(ErrorCode.SYSTEM_SETTINGS.SYSTEM_SETTINGS_VALIDATION_FAILED);
+            if (!results['resource']) {
+                const response = responseSerializer.formatResponse(results, resources);
+                res.status(httpStatusCode).send(response);
             } else {
-                next(err);
+                sendErrorResponse(results, req, res, next);
             }
+        } catch (err) {
+            const errorItem = buildErrorItem(this.sendResponse.name, null, HttpStatus.INTERNAL_SERVER_ERROR, Message.INTERNAL_SERVER_ERROR, err.message);
+            sendErrorResponse(errorItem, req, res, next, err);
         }
-    }
-
-    formatResponse(results, resource) {
-        const formattedResponse = _.isArray(results)
-            ? ResponseSerializer.collectionResourceResponse(results, resource)
-            : ResponseSerializer.singleResourceResponse(results, resource);
-        return formattedResponse;
     }
 }
 
